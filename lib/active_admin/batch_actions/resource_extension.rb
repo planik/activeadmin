@@ -67,8 +67,8 @@ module ActiveAdmin
             authorize! ActiveAdmin::Auth::DESTROY, record
             destroy_resource(record)
           end
-
-          redirect_to active_admin_config.route_collection_path(params),
+          additional_params = default_url_options || {}
+          redirect_to active_admin_config.route_collection_path(params, additional_params),
                       notice: I18n.t(
                         "active_admin.batch_actions.succesfully_destroyed",
                         count: selected_ids.count,
